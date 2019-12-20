@@ -1,9 +1,13 @@
-package fr.d2factory.libraryapp.book;
+package fr.d2factory.libraryapp.entities.book;
 
 public class ISBN {
     long isbnCode;
 
     public ISBN(long isbnCode) {
         this.isbnCode = isbnCode;
+    }
+
+    public long getIsbnCode() {
+        return isbnCode;
     }
 }
