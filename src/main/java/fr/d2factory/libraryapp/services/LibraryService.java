@@ -44,7 +44,6 @@ public class LibraryService implements Library {
         final Book bookToBorrow = bookRepo.findBook(isbnCode);
 
         if (bookToBorrow != null) {
-            System.out.println("just before saveBookBorrow");
             bookRepo.saveBookBorrow(bookToBorrow, borrowedAt);
             memberRepo.saveMemberBorrow(member, bookToBorrow);
         }
@@ -56,5 +55,17 @@ public class LibraryService implements Library {
     @Override
     public void returnBook(Book book, Member member) {
 
+        final LocalDate borrowedAt = bookRepo.findBorrowedBookDate(book);
+
+        if (borrowedAt != null) {
+
+            final LocalDate now = LocalDate.now();
+
+            member.payBook((int) DAYS.between(borrowedAt, now));
+
+            bookRepo.saveBookReturn(book);
+
+            memberRepo.saveMemberReturn(member, book);
+        }
     }
 }

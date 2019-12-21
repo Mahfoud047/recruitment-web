@@ -1,5 +1,4 @@
 package fr.d2factory.libraryapp.entities.member;
-
 import fr.d2factory.libraryapp.services.Library;
 
 /**
@@ -12,21 +11,20 @@ public abstract class Member {
     private String email;
 
 
-    private boolean isLate = false;
-
     /**
      * An initial sum of money the member has
      */
     private float wallet;
 
     /**
-     *
      * @param userName
      * @param email
+     * @param initWallet
      */
-    public Member(String userName, String email){
+    public Member(String userName, String email, float initWallet) {
         this.userName = userName;
         this.email = email;
+        this.wallet = initWallet;
     }
 
     public abstract int getNbrOfMaxDays();
@@ -46,11 +44,12 @@ public abstract class Member {
         this.wallet = wallet;
     }
 
-    public boolean isLate() {
-        return isLate;
-    }
 
-    public void setLate(boolean late) {
-        isLate = late;
+    @Override
+    public String toString() {
+        return "Member: { userName: " + this.userName +
+                ", email: " + this.email +
+                ", wallet: " + this.wallet +
+                " }";
     }
 }

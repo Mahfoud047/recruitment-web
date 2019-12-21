@@ -10,4 +10,9 @@ public class ISBN {
     public long getIsbnCode() {
         return isbnCode;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.isbnCode);
+    }
 }

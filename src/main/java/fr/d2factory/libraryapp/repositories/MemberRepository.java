@@ -1,17 +1,14 @@
 package fr.d2factory.libraryapp.repositories;
 
 import fr.d2factory.libraryapp.entities.book.Book;
-import fr.d2factory.libraryapp.entities.book.ISBN;
 import fr.d2factory.libraryapp.entities.member.Member;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
- * The book repository emulates a database via 2 HashMaps
+ * The member repository emulates a database via a HashMaps
  */
 public class MemberRepository {
     private HashMap<Member, List<Book>> borrowedBooksByMembers = new HashMap<>();
@@ -30,10 +27,21 @@ public class MemberRepository {
         if (borrowedBooksByMembers.containsKey(member)) {
             borrowedBooksByMembers.get(member).add(book);
         } else {
-            final List<Book> newBookList = new ArrayList<Book>();
+            final List<Book> newBookList = new ArrayList<>();
             newBookList.add(book);
             borrowedBooksByMembers.put(member, newBookList);
         }
+        return book;
+    }
+
+
+    /**
+     * @param member
+     * @param book
+     * @return
+     */
+    public Book saveMemberReturn(Member member, Book book) {
+        borrowedBooksByMembers.computeIfAbsent(member, k -> new ArrayList<>()).remove(book);
         return book;
     }
 

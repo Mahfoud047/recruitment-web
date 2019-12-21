@@ -1,5 +1,4 @@
 package fr.d2factory.libraryapp.library.util;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.d2factory.libraryapp.entities.book.Book;

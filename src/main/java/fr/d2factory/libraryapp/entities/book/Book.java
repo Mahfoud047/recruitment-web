@@ -17,4 +17,10 @@ public class Book {
     public ISBN getIsbn() {
         return isbn;
     }
+
+    @Override
+    public String toString() {
+        return "Book: { isbn: " + this.isbn + ", title: " + this.title + ", author: " +
+                this.author + " }";
+    }
 }
